@@ -9,8 +9,11 @@ fn main() {
 
         let mut responder = context.socket(zmq::REP).unwrap();
         println!("  {}", i);
+        let res = responder.bind("tcp://0.0.0.0:5555");
 
-        assert!(responder.bind("tcp://0.0.0.0:5555").is_ok());
+        println!("bind result {:?}", res);
+
+        assert!(res.is_ok());
         i+=1;
 
         let result = responder.unbind("tcp://0.0.0.0:5555");
@@ -26,58 +29,31 @@ fn main() {
         // note: Run with `RUST_BACKTRACE=1` for a backtrace.
 
         // vs with unbind
-        /*
-        entering 0
+        /*entering 0
   0
+bind result Ok(())
 entering 1
   1
+bind result Ok(())
 entering 2
   2
+bind result Ok(())
 entering 3
   3
+bind result Ok(())
 entering 4
   4
+bind result Ok(())
 entering 5
   5
+bind result Ok(())
 entering 6
   6
+bind result Ok(())
 entering 7
   7
-entering 8
-  8
-entering 9
-  9
-entering 10
-  10
-entering 11
-  11
-entering 12
-  12
-entering 13
-  13
-entering 14
-  14
-entering 15
-  15
-entering 16
-  16
-entering 17
-  17
-entering 18
-  18
-entering 19
-  19
-entering 20
-  20
-entering 21
-  21
-entering 22
-  22
-entering 23
-  23
-entering 24
-  24
-thread 'main' panicked at 'assertion failed: responder.bind("tcp://0.0.0.0:5555").is_ok()', src/main.rs:13
+bind result Err(Address already in use)
+thread 'main' panicked at 'assertion failed: res.is_ok()', src/main.rs:16
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
         */
 
