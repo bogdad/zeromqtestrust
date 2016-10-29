@@ -14,7 +14,7 @@ fn main() {
         i+=1;
 
         // if yod dont unbind you get this:
-        // Vladimirs-MBP-2:zeromqtestrust vshakhov$ target/debug/zeromqtestrust
+        // vshakhov$ target/debug/zeromqtestrust
         // entering 0
         // 0
         // entering 1
